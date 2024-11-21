@@ -7,6 +7,54 @@ This project aims to predict breast cancer classifications using an Artificial N
 The project follows a typical machine learning pipeline, including data preprocessing, feature selection, model training, and tuning, followed by making predictions using a trained model. The final application uses Streamlit to create an interactive web interface, allowing users to input values and predict the classification of a tumor.
 
 ---
+### Dataset Details
+
+The dataset contains **569 samples** and **30 features** (columns). Each feature represents a different property of cell nuclei, which can be used to predict whether the tumor is malignant or benign. The target variable indicates whether the tumor is malignant (1) or benign (0).
+
+#### Dataset Shape:
+- **Number of Samples (Rows):** 569
+- **Number of Features (Columns):** 30
+- **Target Variable:** 1 (Malignant), 0 (Benign)
+
+#### Feature Names:
+
+1. **mean radius**
+2. **mean texture**
+3. **mean perimeter**
+4. **mean area**
+5. **mean smoothness**
+6. **mean compactness**
+7. **mean concavity**
+8. **mean concave points**
+9. **mean symmetry**
+10. **mean fractal dimension**
+11. **radius error**
+12. **texture error**
+13. **perimeter error**
+14. **area error**
+15. **smoothness error**
+16. **compactness error**
+17. **concavity error**
+18. **concave points error**
+19. **symmetry error**
+20. **fractal dimension error**
+21. **worst radius**
+22. **worst texture**
+23. **worst perimeter**
+24. **worst area**
+25. **worst smoothness**
+26. **worst compactness**
+27. **worst concavity**
+28. **worst concave points**
+29. **worst symmetry**
+30. **worst fractal dimension**
+
+The features are divided into three categories:
+- **Mean values**: Represents average measurements of the tumor cells.
+- **Error values**: Represents the standard error of the measurements.
+- **Worst values**: Represents the most extreme measurements (i.e., the largest value of the feature) among the different samples.
+
+---
 
 ## Steps Involved
 
@@ -20,6 +68,18 @@ In the first step, the raw Breast Cancer dataset is loaded using the `load_breas
 The next step involves selecting the most important features that contribute significantly to the classification task. This is done using the **ANOVA F-test** (`f_classif`), which measures the relationship between the features and the target variable.
 
 - **Top 10 Features:** The top 10 features that have the highest correlation with the target are selected for model training. This reduces the dimensionality and focuses the model on the most important information.
+- After performing feature selection using the **ANOVA F-test** (`f_classif`), the following 10 features were selected as the most significant predictors for classifying breast cancer as malignant or benign:
+
+1. **mean radius**
+2. **mean perimeter**
+3. **mean area**
+4. **mean concavity**
+5. **mean concave points**
+6. **worst radius**
+7. **worst perimeter**
+8. **worst area**
+9. **worst concavity**
+10. **worst concave points**
 
 ### 3. **Model Training**
 After selecting the relevant features, the next step is to train an Artificial Neural Network (ANN) using the selected features. The model is trained to recognize patterns in the data and learn the relationships between the features and the target variable.
