@@ -1,0 +1,23 @@
+import streamlit as st
+import numpy as np
+from ann_model import train_ann
+from data_preprocessing import load_and_preprocess_data
+from feature_selection import select_features
+from model_tuning import tune_model
+
+st.title("Breast Cancer Prediction App")
+
+X, y, scaler = load_and_preprocess_data()
+X_selected = select_features(X, y)
+model = tune_model(X_selected, y)
+train_ann(X_selected, y, model)
+
+user_input = {feature: st.slider(feature, min_value=float(X[feature].min()), max_value=float(X[feature].max())) for feature in data.feature_names}
+input_data = np.array(list(user_input.values())).reshape(1, -1)
+input_data_scaled = scaler.transform(input_data)
+prediction = model.predict(input_data_scaled)
+
+if prediction == 0:
+    st.write("The tumor is predicted to be **benign**.")
+else:
+    st.write("The tumor is predicted to be **malignant**.")
